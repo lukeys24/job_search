@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/lukeys24/job_search#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "cron": "^1.8.2",
+    "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "redis": "^3.0.2"
   }

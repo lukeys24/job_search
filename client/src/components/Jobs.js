@@ -10,7 +10,7 @@ export default function Jobs({ jobs }) {
                 Entry Level Software Jobs
             </Typography>
             {
-                jobs.map(job => <Job job={job} />)
+                jobs.map(job => <Job key={job.id} job={job} />)
             }
         </div>
     )

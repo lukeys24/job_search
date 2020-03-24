@@ -5,13 +5,13 @@ var redis = require('redis')
 var client = redis.createClient();
 
 const setAsync = promisify(client.set).bind(client);
-// const getAsync = promisify(client.get).bind(client);
+const getAsync = promisify(client.get).bind(client);
 
 const baseURL = `https://jobs.github.com/positions.json`;
 
 async function fetchGithub() {
     let sizeOfPage = 0,
-        onPage = 0;
+        onPage = 1;
     const allJobs = [];
 
     // get the jobs
