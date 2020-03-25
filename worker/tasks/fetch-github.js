@@ -7,7 +7,7 @@ var client = redis.createClient();
 const setAsync = promisify(client.set).bind(client);
 const getAsync = promisify(client.get).bind(client);
 
-const baseURL = `https://jobs.github.com/positions.json`;
+const baseURL = `https://jobs.github.com/positions.json?location=us&fulltime=true`;
 
 async function fetchGithub() {
     let sizeOfPage = 0,
@@ -17,7 +17,7 @@ async function fetchGithub() {
     // get the jobs
     do {
         try {
-            const response = await fetch(`${baseURL}?page=${onPage}`);
+            const response = await fetch(`${baseURL}&page=${onPage}`);
             const jobs = await response.json();
 
             allJobs.push(...jobs);
@@ -38,11 +38,14 @@ async function fetchGithub() {
             jobTitle.includes('senior') ||
             jobTitle.includes('manager') ||
             jobTitle.includes('sr.') ||
+            jobTitle.includes('sr') || 
             jobTitle.includes('staff') ||
             jobTitle.includes('principal') ||
             jobTitle.includes('architect') || 
             jobTitle.includes('sdet') ||
             jobTitle.includes('test') || 
+            jobTitle.includes('director') || 
+            jobTitle.includes('lead') || 
             (
                 !jobTitle.includes('software') && 
                 !jobTitle.includes('engineer') &&

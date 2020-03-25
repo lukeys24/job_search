@@ -8,7 +8,7 @@ const JOB_API_URL = "http://localhost:3001/jobs";
 async function fetchJobs(updateJobs) {
     const res = await fetch(JOB_API_URL);
     let data = await res.json();
-    console.log(data);
+    console.log(data[0]);
     updateJobs(data)
 }
 
