@@ -1,9 +1,10 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 
-import { display, flexbox } from "@material-ui/system";
+import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
 import MuiExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MuiExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import MuiExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -47,35 +48,22 @@ const useStyles = makeStyles({
 
 export default function Job({ job }) {
     const [expanded, setExpanded] = React.useState("");
+    const preventDefault = event => event.preventDefault();
 
     const handleChange = panel => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
 
     const classes = useStyles();
+    const panel = "panel" + job.id;
 
     return (
-        // <Card className="job">
-        //     <div>
-        //         <Typography variant="h5">{job.title}</Typography>
-        //         <Typography variant="h6">{job.company}</Typography>
-        //         <Typography>{job.location}</Typography>
-        //     </div>
-
-        // <div>
-        //     {job.created_at
-        //         .split(" ")
-        //         .slice(0, 3)
-        //         .join(" ")}
-        // </div>
-        // </Card>
-
-        <div className="job">
+        <div className="job" id={job.id}>
             <MuiExpansionPanel
                 className={`${classes.rootMuiExpansionPanel} ${classes.expanded}`}
                 square={false}
-                expanded={expanded === "panel1"}
-                onChange={handleChange("panel1")}
+                expanded={expanded === panel}
+                onChange={handleChange(panel)}
             >
                 <MuiExpansionPanelSummary
                     className={`${classes.rootExpansionPanelSummary} ${classes.expandedSummary} summary-panel`}
@@ -111,8 +99,17 @@ export default function Job({ job }) {
                         }}
                     />
                     <div className="links">
-                        <button>hello</button>
-                        <button>hello</button>
+                        <a href={`#${job.id}`}>
+                            <Button onClick={handleChange(panel)}>Close</Button>
+                        </a>
+
+                        <Typography className={classes.root}>
+                            <Link target="_blank" href={job.url}>
+                                <Button variant="contained" color="primary">
+                                    Apply
+                                </Button>
+                            </Link>
+                        </Typography>
                     </div>
                 </MuiExpansionPanelDetails>
             </MuiExpansionPanel>
