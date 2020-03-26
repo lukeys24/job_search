@@ -12,6 +12,7 @@ const useStyles = makeStyles({
         border: "1px solid rgba(0, 0, 0, .125)",
         boxShadow: "none",
         minWidth: 300,
+        backgroundColor: '#93bbcf',
         "&:not(:last-child)": {
             borderBottom: 0
         },

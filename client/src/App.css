@@ -6,16 +6,26 @@ body {
   width: 100%;
   height: 100%;
   margin: 0px;
+}
+
+.content {
   padding: 25px;
+  background-color: skyblue;
+}
+
+.header-content {
+  padding: 25px;
+  color: skyblue;
+  background-color: black;
 }
 
 .jobs {
-  width: 80%;
+  width: 100%;
   flex-direction: column;
 }
 
 .job {
-  width: 80%;
+  width: 60%;
   margin: 20px 0;
   padding: 20px 0px;
   display: flex;
